@@ -1,0 +1,5 @@
+.env
+add-service/node_modules
+delete-service/node_modules
+read-service/node_modules
+update-service/node_modules

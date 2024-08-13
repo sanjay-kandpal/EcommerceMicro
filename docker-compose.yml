@@ -1,12 +1,28 @@
-version: '3'
+
 services:
-  backend:
-    build: ./backend
+  add-service:
+    build: ./add-service
     ports:
-      - "5000:5000"
-    env_file:
-      - ./backend/.env
-  frontend:
-    build: ./frontend
+      - "5001:5001"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+  delete-service:
+    build: ./delete-service
     ports:
-      - "80:80"
+      - "5002:5002"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+  update-service:
+    build: ./update-service
+    ports:
+      - "5003:5003"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+  read-service:
+    build: ./read-service
+    ports:
+      - "5004:5004"
+    environment:
+      - MONGO_URI=${MONGO_URI}

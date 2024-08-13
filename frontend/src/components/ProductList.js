@@ -7,7 +7,7 @@ function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('/products')
+    axios.get('http://localhost:5004/products')
       .then(response => setProducts(response.data))
       .catch(error => console.error(error));
   }, []);

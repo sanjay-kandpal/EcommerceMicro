@@ -31,7 +31,7 @@ function ProductForm() {
         .then(() => navigate(`/products/${id}`))
         .catch(error => console.error(error));
     } else {
-      axios.post('/products', product)
+      axios.post('http://localhost:5001/products', product)
         .then(() => navigate('/'))
         .catch(error => console.error(error));
     }
