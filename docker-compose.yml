@@ -1,5 +1,9 @@
 
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
   add-service:
     build: ./add-service
     ports:
@@ -26,3 +30,12 @@ services:
       - "5004:5004"
     environment:
       - MONGO_URI=${MONGO_URI}
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sanjaykandpal4
+      MONGO_INITDB_ROOT_PASSWORD: Lxhy4GAflnFwKftj

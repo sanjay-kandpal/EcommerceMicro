@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Product = require('./models/Product');
+const Product = require('./model/Product');
 
 require('dotenv').config();
 
