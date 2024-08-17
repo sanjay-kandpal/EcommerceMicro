@@ -1,41 +1,66 @@
-
 services:
   frontend:
     build: ./frontend
     ports:
       - "80:80"
+    networks:
+      - micro
+
   add-service:
     build: ./add-service
     ports:
       - "5001:5001"
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI=${MONGO_URI_PRODUCT}
+    depends_on:
+      - mongo
+    networks:
+      - micro
 
   delete-service:
     build: ./delete-service
     ports:
       - "5002:5002"
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI=${MONGO_URI_PRODUCT}
+    depends_on:
+      - mongo
+    networks:
+      - micro
 
   update-service:
     build: ./update-service
     ports:
       - "5003:5003"
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI=${MONGO_URI_PRODUCT}
+    depends_on:
+      - mongo
+    networks:
+      - micro
+
   read-service:
     build: ./read-service
     ports:
       - "5004:5004"
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI=${MONGO_URI_PRODUCT}
+    depends_on:
+      - mongo
+    networks:
+      - micro
+
   mongo:
     image: mongo:6.0
     ports:
       - "27017:27017"
     volumes:
       - ./data/db:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: sanjaykandpal4
-      MONGO_INITDB_ROOT_PASSWORD: Lxhy4GAflnFwKftj
+    env_file:
+      - .env
+    networks:
+      - micro
+
+networks:
+  micro:
+    driver: bridge

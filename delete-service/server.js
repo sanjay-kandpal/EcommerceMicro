@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Product = require('./models/Product');
+const Product = require('./models/Railway');
 
 require('dotenv').config();
 
@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI, {
   console.log('MongoDB connected for delete service');
 }).catch(err => console.log(err));
 
-app.delete('/products/:id', async (req, res) => {
+app.delete('/railways/:id', async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });

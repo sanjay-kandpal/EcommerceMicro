@@ -2,8 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Product = require('./models/Product'); // assuming you share models
-
+const Product = require('./models/Railway'); // assuming you share models
 require('dotenv').config();
 
 const app = express();
@@ -15,11 +14,12 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => {
+})
+.then(() => {
   console.log('MongoDB connected for add service');
 }).catch(err => console.log(err));
 
-app.post('/products', async (req, res) => {
+app.post('/railways', async (req, res) => {
   try {
     const product = new Product(req.body);
     await product.save();
@@ -28,6 +28,37 @@ app.post('/products', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+app.get('/suggestions', async (req, res) => {
+  try {
+    // Dummy data for testing
+    const dummySuggestions = [
+      "Grand Central Station",
+      "Union Station",
+      "Penn Station",
+      "Chicago Union Station",
+      "King's Cross Station"
+    ];
+
+    const { q } = req.query;
+
+    if (!q || q.length < 3) {
+      return res.json([]);
+    }
+
+    // Simulate filtering and limiting
+    const filteredSuggestions = dummySuggestions.filter(name => 
+      name.toLowerCase().includes(q.toLowerCase())
+    ).slice(0, 5);
+
+    res.json(filteredSuggestions);
+  } catch (error) {
+    console.error('Error fetching suggestions:', error);
+    res.status(500).json({ message: 'Error fetching suggestions' });
+  }
+});
+
+
 
 app.listen(port, () => {
   console.log(`Add service is running on port: ${port}`);

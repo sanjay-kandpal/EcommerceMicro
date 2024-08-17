@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Product = require('./models/Product');
+const Product = require('./models/Railway');
 
 require('dotenv').config();
 
@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI, {
   console.log('MongoDB connected for read service');
 }).catch(err => console.log(err));
 
-app.get('/products', async (req, res) => {
+app.get('/railways', async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);

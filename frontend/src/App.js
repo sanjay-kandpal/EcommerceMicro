@@ -1,9 +1,9 @@
 // frontend/src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProductList from './components/ProductList';
+import ProductList from './components/RailwayList';
 import ProductDetail from './components/ProductDetail';
-import ProductForm from './components/ProductForm';
+import ProductForm from './components/RailwayForm';
 
 function App() {
   return (
