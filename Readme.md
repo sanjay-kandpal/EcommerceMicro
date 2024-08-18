@@ -1,6 +1,6 @@
-# Ecommerce
+# RailwayAPI
 
-Ecommerce is a Web Application which is based on Microservice Architecture instead of Monolithic architecture.
+Railway API is a Web Application which is based on Microservice Architecture instead of Monolithic architecture.
 
 # Running Dockerized Ecommerce Microservices on a Different System
 

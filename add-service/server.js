@@ -21,7 +21,9 @@ mongoose.connect(process.env.MONGO_URI, {
 
 app.post('/railways', async (req, res) => {
   try {
+    console.log('Recieved Data',req.body);
     const product = new Product(req.body);
+    console.log('Stations after retrieval:', product.stations);
     await product.save();
     res.status(201).json(product);
   } catch (err) {

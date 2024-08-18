@@ -62,5 +62,3 @@ const RailwaySchema = new mongoose.Schema({
 const Railway = mongoose.model('Railway', RailwaySchema);
 
 module.exports = Railway;
-
-

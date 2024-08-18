@@ -35,15 +35,27 @@ const RailwaySchema = new mongoose.Schema({
   },
   trains: [TrainSchema],
   stations: [{
-    type: String,
-    required: true
+    type: [String],
+    required: true,
+    validate: {
+      validator: function(v) {
+        return Array.isArray(v) && v.every(item => typeof item === 'string');
+      },
+      message: props => `${props.value} is not a valid array of strings!`
+    }
   }],
   routes: [{
-    type: String,
-    required: true
+    type: [String],
+    required: true,
+    validate: {
+      validator: function(v) {
+        return Array.isArray(v) && v.every(item => typeof item === 'string');
+      },
+      message: props => `${props.value} is not a valid array of strings!`
+    }
   }],
   operatingHours: {
-    start: {
+    start: {  
       type: String,
       required: true,
       match: /^([01]\d|2[0-3]):([0-5]\d)$/  // HH:MM format
