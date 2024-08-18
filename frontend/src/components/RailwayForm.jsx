@@ -159,120 +159,158 @@ function RailwayForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>{id ? 'Edit' : 'Add'} Railway</h1>
-      
-      {error && <div style={{color: 'red'}}>{error}</div>}
-      <div>
-        <label htmlFor="name">Railway Name:</label>
-        <input
-          id="name"
-          name="name"
-          value={railway.name}
-          onChange={handleNameChange}
-          required
-        />
-        {suggestions.length > 0 && (
-          <ul>
-            {suggestions.map((suggestion, index) => (
-              <li key={index} onClick={() => setRailway(prevState => ({ ...prevState, name: suggestion }))}>
-                {suggestion}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <h2>Trains</h2>
-      {railway.trains.map((train, index) => (
-        <div key={index}>
+    <div className="container mt-5">
+      <form onSubmit={handleSubmit}>
+        <h1 className="mb-4">{id ? 'Edit' : 'Add'} Railway</h1>
+        
+        {error && <div className="alert alert-danger" role="alert">{error}</div>}
+        
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">Railway Name:</label>
           <input
-            type="text"
-            placeholder="Train Number"
-            value={train.trainNumber}
-            onChange={(e) => handleTrainChange(index, 'trainNumber', e.target.value)}
+            id="name"
+            name="name"
+            value={railway.name}
+            onChange={handleNameChange}
             required
+            className="form-control"
           />
-          <input
-            type="text"
-            placeholder="Train Type"
-            value={train.trainType}
-            onChange={(e) => handleTrainChange(index, 'trainType', e.target.value)}
-            required
-          />
-          <input
-            type="number"
-            placeholder="Capacity"
-            value={train.capacity}
-            onChange={(e) => handleTrainChange(index, 'capacity', e.target.value)}
-            required
-          />
-          <button type="button" onClick={() => removeTrain(index)}>Remove Train</button>
+          {suggestions.length > 0 && (
+            <ul className="list-group mt-2">
+              {suggestions.map((suggestion, index) => (
+                <li key={index} className="list-group-item list-group-item-action" 
+                    onClick={() => setRailway(prevState => ({ ...prevState, name: suggestion }))}>
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-      ))}
-      <button type="button" onClick={addTrain}>Add Train</button>
-      <div>
-        <label htmlFor="stations">Stations (comma-separated):</label>
-        <input
-          id="stations"
-          name="stations"
-          value={railway.stations}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="routes">Routes (comma-separated):</label>
-        <input
-          id="routes"
-          name="routes"
-          value={railway.routes}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <h3>Operating Hours</h3>
-        <label htmlFor="operatingHoursStart">Start:</label>
-        <input
-          id="operatingHoursStart"
-          type="time"
-          value={railway.operatingHours.start}
-          onChange={(e) => handleOperatingHoursChange('start', e.target.value)}
-          required
-        />
-        <label htmlFor="operatingHoursEnd">End:</label>
-        <input
-          id="operatingHoursEnd"
-          type="time"
-          value={railway.operatingHours.end}
-          onChange={(e) => handleOperatingHoursChange('end', e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <h3>Maintenance Schedule</h3>
-        {railway.maintenanceSchedule.map((schedule, index) => (
-          <div key={index}>
-            <input
-              type="date"
-              value={schedule.date}
-              onChange={(e) => handleMaintenanceChange(index, 'date', e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              value={schedule.description}
-              onChange={(e) => handleMaintenanceChange(index, 'description', e.target.value)}
-              required
-            />
-            <button type="button" onClick={() => removeMaintenanceSchedule(index)}>Remove</button>
+
+        <h2 className="mt-4 mb-3">Trains</h2>
+        {railway.trains.map((train, index) => (
+          <div key={index} className="row mb-3">
+            <div className="col">
+              <input
+                type="text"
+                placeholder="Train Number"
+                value={train.trainNumber}
+                onChange={(e) => handleTrainChange(index, 'trainNumber', e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                placeholder="Train Type"
+                value={train.trainType}
+                onChange={(e) => handleTrainChange(index, 'trainType', e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="col">
+              <input
+                type="number"
+                placeholder="Capacity"
+                value={train.capacity}
+                onChange={(e) => handleTrainChange(index, 'capacity', e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="col-auto">
+              <button type="button" className="btn btn-danger" onClick={() => removeTrain(index)}>Remove Train</button>
+            </div>
           </div>
         ))}
-        <button type="button" onClick={addMaintenanceSchedule}>Add Maintenance Schedule</button>
-      </div>
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? 'Submitting...' : 'Submit'}
-      </button>
-    </form>
+        <button type="button" className="btn btn-secondary mb-3" onClick={addTrain}>Add Train</button>
+
+        <div className="mb-3">
+          <label htmlFor="stations" className="form-label">Stations (comma-separated):</label>
+          <input
+            id="stations"
+            name="stations"
+            value={railway.stations}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="routes" className="form-label">Routes (comma-separated):</label>
+          <input
+            id="routes"
+            name="routes"
+            value={railway.routes}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+
+        <h3 className="mt-4 mb-3">Operating Hours</h3>
+        <div className="row mb-3">
+          <div className="col">
+            <label htmlFor="operatingHoursStart" className="form-label">Start:</label>
+            <input
+              id="operatingHoursStart"
+              type="time"
+              value={railway.operatingHours.start}
+              onChange={(e) => handleOperatingHoursChange('start', e.target.value)}
+              required
+              className="form-control"
+            />
+          </div>
+          <div className="col">
+            <label htmlFor="operatingHoursEnd" className="form-label">End:</label>
+            <input
+              id="operatingHoursEnd"
+              type="time"
+              value={railway.operatingHours.end}
+              onChange={(e) => handleOperatingHoursChange('end', e.target.value)}
+              required
+              className="form-control"
+            />
+          </div>
+        </div>
+
+        <h3 className="mt-4 mb-3">Maintenance Schedule</h3>
+        {railway.maintenanceSchedule.map((schedule, index) => (
+          <div key={index} className="row mb-3">
+            <div className="col">
+              <input
+                type="date"
+                value={schedule.date}
+                onChange={(e) => handleMaintenanceChange(index, 'date', e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                placeholder="Description"
+                value={schedule.description}
+                onChange={(e) => handleMaintenanceChange(index, 'description', e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="col-auto">
+              <button type="button" className="btn btn-danger" onClick={() => removeMaintenanceSchedule(index)}>Remove</button>
+            </div>
+          </div>
+        ))}
+        <button type="button" className="btn btn-secondary mb-3" onClick={addMaintenanceSchedule}>Add Maintenance Schedule</button>
+
+        <div className="mt-4">
+          <button type="submit" className="btn btn-primary" disabled={isLoading}>
+            {isLoading ? 'Submitting...' : 'Submit'}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
