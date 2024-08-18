@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Product = require('./model/Product');
+const Product = require('./model/Railway');
 
 require('dotenv').config();
 
@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI, {
   console.log('MongoDB connected for update service');
 }).catch(err => console.log(err));
 
-app.put('/products/:id', async (req, res) => {
+app.put('/update/:id', async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!product) return res.status(404).json({ message: 'Product not found' });
