@@ -106,6 +106,8 @@ function RailwayList() {
                 ))}
               </ul>
             </div>
+            <h6>UpdatedAt</h6>
+            <p><span className='fst-italic'>{railway.updatedAt}</span></p>
             <div className="card-footer">
               <button onClick={() => handleUpdate(railway._id)} className="btn btn-warning me-2">Update</button>
               <button onClick={() => deleteRailway(railway._id)} className="btn btn-danger">Delete</button>

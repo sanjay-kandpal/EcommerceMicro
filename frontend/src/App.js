@@ -6,6 +6,8 @@ import ProductDetail from './components/ProductDetail';
 import ProductForm from './components/RailwayForm';
 import UpdateRailway from './components/UpdateRailway';
 
+import ReadOnly from './components/ReadOnly.jsx';
+
 function App() {
   return (
     <Router>
@@ -16,6 +18,7 @@ function App() {
           <Route path="/add" element={<ProductForm />} />
           <Route path="/edit/:id" element={<ProductForm />} />
           <Route path="/update/:id" element={<UpdateRailway />} />
+          <Route path="/railways-readonly" element={<ReadOnly />} />
         </Routes>
       </div>
     </Router>

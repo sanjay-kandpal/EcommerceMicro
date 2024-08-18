@@ -18,7 +18,7 @@ function UpdateRailway() {
 
   useEffect(() => {
     fetchRailway();
-  }, [id]);
+  }, []);
 
   const fetchRailway = async () => {
     try {

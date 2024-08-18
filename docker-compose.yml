@@ -6,6 +6,16 @@ services:
     networks:
       - micro
 
+  read-only-service:
+    build: ./read-only-service
+    ports:
+      - "5009:5009"
+    environment:
+      - MONGO_URI=${MONGO_URI_PRODUCT}
+    depends_on:
+      - mongo
+    networks:
+      - micro
   add-service:
     build: ./add-service
     ports:
