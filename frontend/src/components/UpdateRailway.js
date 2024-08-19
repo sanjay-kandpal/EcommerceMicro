@@ -23,7 +23,7 @@ function UpdateRailway() {
   const fetchRailway = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://localhost:5004/railways/${id}`);
+      const response = await axios.get(`https://read-service-dbcxf5azfwebh9hf.southindia-01.azurewebsites.net/railways/${id}`);
       setRailway(response.data);
     } catch (error) {
       console.error('Error fetching railway:', error);
@@ -55,7 +55,7 @@ function UpdateRailway() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5003/update/${id}`, railway);
+      await axios.put(`https://update-service-afg4hrdyggcedzad.southindia-01.azurewebsites.net/update/${id}`, railway);
       navigate('/');
     } catch (error) {
       console.error('Error updating railway:', error);

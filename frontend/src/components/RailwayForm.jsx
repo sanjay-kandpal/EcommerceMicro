@@ -23,7 +23,7 @@ function RailwayForm() {
     if (id) {
       setIsLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5004/railways/${id}`);
+        const response = await axios.get(`https://read-service-dbcxf5azfwebh9hf.southindia-01.azurewebsites.net/railways/${id}`);
         const fetchedData = response.data;
         setRailway({
           ...fetchedData,
@@ -109,12 +109,11 @@ function RailwayForm() {
 
   const debouncedSuggestions = useCallback(
     debounce((value) => {
-      axios.get(`http://localhost:5001/suggestions?q=${value}`)
+      axios.get(`https://add-service-e0ewgyeqephsesaz.southindia-01.azurewebsites.net/suggestions?q=${value}`)
         .then(response => setSuggestions(response.data))
         .catch(error => console.error('Error fetching suggestions:', error));
-    }, 300),
-    []
-  );
+    }, 300)
+    ,[setSuggestions]);
 
   const handleNameChange = (e) => {
     const { value } = e.target;
@@ -137,9 +136,9 @@ function RailwayForm() {
         routes: railway.routes.split(',').map(route => route.trim())
       };
       if (id) {
-        await axios.put(`http://localhost:5004/railways/${id}`, finalRailway);
+        await axios.put(`https://update-service-afg4hrdyggcedzad.southindia-01.azurewebsites.net/railways/${id}`, finalRailway);
       } else {
-        await axios.post('http://localhost:5001/railways', finalRailway);
+        await axios.post('https://add-service-e0ewgyeqephsesaz.southindia-01.azurewebsites.net/railways', finalRailway);
       }
       navigate('/');
     } catch (error) {

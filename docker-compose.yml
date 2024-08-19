@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: sanjaykandpal07/frontend:latest
+    image: sanjaykandpal07/my-frontend-app:v1.0.0
     ports:
       - "80:80"
     networks:

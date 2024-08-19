@@ -14,7 +14,7 @@ function RailwayList() {
   const fetchRailways = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:5004/railways');
+      const response = await axios.get('https://read-service-dbcxf5azfwebh9hf.southindia-01.azurewebsites.net/railways');
       if (Array.isArray(response.data)) {
         setRailways(response.data);
       } else {
@@ -36,7 +36,7 @@ function RailwayList() {
 
   const deleteRailway = async (id) => {
     try {
-      await axios.delete(`http://localhost:5002/railways/${id}`);
+      await axios.delete(`https://delete-service-c4gsfdg6hpgtcaa0.southindia-01.azurewebsites.net/railways/${id}`);
       setRailways(prevRailways => prevRailways.filter(railway => railway._id !== id));
     } catch (error) {
       console.error('Error deleting railway:', error);
