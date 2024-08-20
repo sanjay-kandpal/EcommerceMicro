@@ -30,7 +30,7 @@ You have two options for transferring the Docker image to the target system:
 
 
 ## ScreenShots
-https://github.com/user-attachments/assets/8b6e5dda-3f83-4032-9026-414b999b324b
+//https://github.com/user-attachments/assets/8b6e5dda-3f83-4032-9026-414b999b324b
 
 
 ## Contributing
